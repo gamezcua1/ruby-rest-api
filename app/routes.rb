@@ -4,4 +4,4 @@ require_relative './controllers/BooksController'
 
 Router.get('/books', BooksController, 'index')
 Router.get('/books/:id', BooksController, 'show')
-Router.post('/books/', BooksController, 'create')
+Router.post('/books', BooksController, 'create')

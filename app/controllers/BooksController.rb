@@ -12,8 +12,7 @@ class BooksController
   end
 
   def self.create(req, res)
-    puts req
-    puts res
+    puts req.data
   end
 end
 

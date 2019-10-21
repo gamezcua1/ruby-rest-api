@@ -1,3 +1,14 @@
+# frozen_string_literal: true
+
+require 'json'
+
+# Request 
+#
+# verb      :string
+# path      :string
+# headers   :hash
+# data      :string || :hash
+#
 class Request
   attr_accessor :verb, :path, :headers, :data
 
@@ -10,6 +21,7 @@ class Request
     build_resource(metadata.shift)
     build_headers(metadata)
     read_data(session)
+    build_data
   end
 
   def to_s
@@ -17,6 +29,13 @@ class Request
   end
 
   private
+
+  def build_data
+    case @headers['Content-Type']
+    when 'application/json'
+      @data = JSON.parse(@data)
+    end
+  end
 
   def read_data(session)
     data_length = headers['Content-Length'].to_i
