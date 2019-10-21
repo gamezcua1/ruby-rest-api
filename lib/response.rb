@@ -1,7 +1,8 @@
 require 'date'
 
 class Response
-  attr_accessor :status, :headers, :response
+  attr_accessor :status, :headers 
+  attr_reader :response
 
   DEFAULT_HEADERS = {
     "Content-Type": 'text/plain',
@@ -24,4 +25,11 @@ class Response
 
     data.join("\r\n")
   end
+
+  def response=(res)
+    @response = res
+    @headers['Content-Length'] = res.bytesize
+  end
+
+
 end

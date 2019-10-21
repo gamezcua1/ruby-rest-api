@@ -3,6 +3,8 @@ require 'socket'
 require_relative 'lib/request'
 require_relative 'lib/response'
 require_relative 'lib/resolver'
+require_relative 'lib/router'
+require_relative 'api/routes'
 
 host = ENV['BIND_ADDRESS'] || 'localhost'
 port = ENV['PORT'] ? ENV['PORT'].to_i : 8080
@@ -20,6 +22,8 @@ loop do
 
   res = Response.new(response: data, status: status,
                      headers: headers)
+
+  Router.resolve(req, res)
 
   session.print(res.render)
   session.close
