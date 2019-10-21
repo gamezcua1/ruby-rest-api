@@ -4,7 +4,8 @@ require_relative 'lib/request'
 require_relative 'lib/response'
 require_relative 'lib/resolver'
 require_relative 'lib/router'
-require_relative 'api/routes'
+require_relative 'app/routes'
+require_relative 'lib/database'
 
 host = ENV['BIND_ADDRESS'] || 'localhost'
 port = ENV['PORT'] ? ENV['PORT'].to_i : 8080
